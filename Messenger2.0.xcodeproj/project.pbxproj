@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E2EC5C82B6E3C5D00A26EDE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E2EC5C72B6E3C5D00A26EDE /* GoogleService-Info.plist */; };
 		0E50CEEA2B6DBA3B00226B22 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50CEE92B6DBA3B00226B22 /* AppDelegate.swift */; };
 		0E50CEEC2B6DBA3B00226B22 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50CEEB2B6DBA3B00226B22 /* SceneDelegate.swift */; };
 		0E50CEEE2B6DBA3B00226B22 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E50CEED2B6DBA3B00226B22 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E2EC5C72B6E3C5D00A26EDE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0E50CEE62B6DBA3B00226B22 /* Messenger2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Messenger2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E50CEE92B6DBA3B00226B22 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E50CEEB2B6DBA3B00226B22 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				0E50CEF22B6DBA3C00226B22 /* Assets.xcassets */,
 				0E50CEF42B6DBA3C00226B22 /* LaunchScreen.storyboard */,
 				0E50CEF72B6DBA3C00226B22 /* Info.plist */,
+				0E2EC5C72B6E3C5D00A26EDE /* GoogleService-Info.plist */,
 			);
 			path = Messenger2.0;
 			sourceTree = "<group>";
@@ -88,7 +91,6 @@
 				7C2DD413F445D2DC58BAB467 /* Pods-Messenger2.0.debug.xcconfig */,
 				4FC2A08E8E4D5A0EB719BEB6 /* Pods-Messenger2.0.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -153,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E50CEF62B6DBA3C00226B22 /* LaunchScreen.storyboard in Resources */,
+				0E2EC5C82B6E3C5D00A26EDE /* GoogleService-Info.plist in Resources */,
 				0E50CEF32B6DBA3C00226B22 /* Assets.xcassets in Resources */,
 				0E50CEF12B6DBA3B00226B22 /* Main.storyboard in Resources */,
 			);

@@ -194,7 +194,7 @@ extension ProgressHUD {
 
 		timerHUD = Timer.scheduledTimer(withTimeInterval: delay, repeats: false) { [weak self] _ in
 			guard let self = self else { return }
-			dismissHUD()
+            self.dismissHUD()
 		}
 	}
 }

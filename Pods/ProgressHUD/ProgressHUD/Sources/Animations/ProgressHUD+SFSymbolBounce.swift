@@ -26,9 +26,9 @@ extension ProgressHUD {
 		imageView.tintColor = colorAnimation
 		imageView.contentMode = .scaleAspectFit
 
-		if #available(iOS 17.0, *) {
-			imageView.addSymbolEffect(.bounce, options: .repeating)
-		}
+		//if #available(iOS 17.0, *) {
+		//	imageView.addSymbolEffect(.bounce, options: .repeating)
+		//}
 
 		view.addSubview(imageView)
 	}
