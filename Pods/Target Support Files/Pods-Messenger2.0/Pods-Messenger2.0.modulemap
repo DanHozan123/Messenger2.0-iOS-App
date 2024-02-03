@@ -1,0 +1,6 @@
+framework module Pods_Messenger2_0 {
+  umbrella header "Pods-Messenger2.0-umbrella.h"
+
+  export *
+  module * { export * }
+}
