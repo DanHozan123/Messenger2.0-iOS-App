@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class LoginViewController: UIViewController {
     
@@ -42,16 +43,37 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
         updateUIFor(login: true)
         setupTextFieldDelegates()
+        setupBackgroundTap()
         
     }
     
     //MARK: - IBActions
     
     @IBAction func loginButttonPressedAction(_ sender: Any) {
+        // login
+        if isLogin == true {
+            if isDataInputedFor(type: "Login") != true {
+                ProgressHUD.failed("All fields are required")
+            }
+        }
+        // register
+        else {
+            if isDataInputedFor(type: "Registration") != true {
+                ProgressHUD.failed("All fields are required")
+            }
+        }
     }
     @IBAction func forgotPasswordButtonPressedAction(_ sender: Any) {
+        // reset password
+        if isDataInputedFor(type: "Password") != true {
+            ProgressHUD.failed("Mail is required")
+        }
     }
     @IBAction func resendEmailButtonPressedAction(_ sender: Any) {
+        //resend verification mail
+        if isDataInputedFor(type: "Password") != true {
+            ProgressHUD.failed("Mail is required")
+        }
     }
     @IBAction func signUpButtonPressedAction(_ sender: UIButton) {
         
@@ -77,6 +99,16 @@ class LoginViewController: UIViewController {
     @objc func textFieldDidChange(textField: UITextField) {
         updatePlaceholdersLabels(textField: textField)
     }
+    
+    private func setupBackgroundTap() {
+        let tapGesture =  UITapGestureRecognizer(target: self, action: #selector(backgroundTap))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func backgroundTap() {
+        view.endEditing(false)
+    }
+    
     
     
     //MARK: - Animations
@@ -136,6 +168,30 @@ class LoginViewController: UIViewController {
         
     }
     
+    //MARK: - Helpes
+    private func isDataInputedFor(type: String) -> Bool {
+        switch type {
+        case "Login":
+            if (emailTextFieldOutlet.text != "" && passwordTextFieldOutlet.text != ""){
+                return true
+            } else {
+                return false
+            }
+            
+        case "Registration":
+            if (emailTextFieldOutlet.text != "" && passwordTextFieldOutlet.text != "" && repeatPasswordTextFieldOutlet.text != ""){
+                return true
+            } else {
+                return false
+            }
+        default:
+            if (emailTextFieldOutlet.text != ""){
+                return true
+            } else {
+                return false
+            }
+        }
+    }
     
 }
 
