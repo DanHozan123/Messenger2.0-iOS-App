@@ -111,7 +111,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Forgot Password?"/>
                                 <connections>
-                                    <action selector="forgotPasswordButtonPressedAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vfE-NO-Fxb"/>
+                                    <action selector="forgotPasswordButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2TT-8l-LUZ"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9V-ch-OgM">
@@ -123,7 +123,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Resend Email"/>
                                 <connections>
-                                    <action selector="resendEmailButtonPressedAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KGi-Eh-qgh"/>
+                                    <action selector="resendEmailButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xcl-d1-G7u"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VjK-RS-sFp">
@@ -131,7 +131,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="loginBtn"/>
                                 <connections>
-                                    <action selector="loginButttonPressedAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gyg-BV-xUv"/>
+                                    <action selector="loginButttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0bW-qh-Hjx"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="J0H-bK-cDb">
@@ -148,7 +148,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
                                         <connections>
-                                            <action selector="signUpButtonPressedAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CAS-QR-1FE"/>
+                                            <action selector="signUpButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ahJ-1H-xls"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -175,17 +175,17 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailLabelOutlet" destination="bIs-3F-6Xu" id="1VP-en-sC4"/>
-                        <outlet property="emailTextFieldOutlet" destination="YbF-NH-h7w" id="fPB-cF-hG1"/>
-                        <outlet property="loginButtonOutlet" destination="VjK-RS-sFp" id="iLn-cH-0vn"/>
-                        <outlet property="passwordLabelOutlet" destination="hEY-Wp-4G4" id="I8k-Th-9E4"/>
-                        <outlet property="passwordTextFieldOutlet" destination="3DW-u6-ldY" id="rhD-Gv-dwD"/>
-                        <outlet property="repeatPasswordLabelOutlet" destination="dsU-f4-LEm" id="Ips-TO-0t4"/>
-                        <outlet property="repeatPasswordLineViewOutlet" destination="Hgh-JZ-xow" id="lrK-aA-8dQ"/>
-                        <outlet property="repeatPasswordTextFieldOutlet" destination="v6P-Bb-cyr" id="6to-bF-Bju"/>
-                        <outlet property="resendEmailButtonOutlet" destination="V9V-ch-OgM" id="YAf-9k-zY9"/>
-                        <outlet property="signUpButtonOutlet" destination="XfU-BG-NR7" id="tu0-Hh-Crj"/>
-                        <outlet property="signUpLabelOutlet" destination="i8T-qR-Cvc" id="aox-q2-Nat"/>
+                        <outlet property="emailLabel" destination="bIs-3F-6Xu" id="0vB-cI-UJF"/>
+                        <outlet property="emailTextField" destination="YbF-NH-h7w" id="VQu-Ym-Tpd"/>
+                        <outlet property="loginButton" destination="VjK-RS-sFp" id="Ud8-x8-neu"/>
+                        <outlet property="passwordLabel" destination="hEY-Wp-4G4" id="Cmg-Wu-S7o"/>
+                        <outlet property="passwordTextField" destination="3DW-u6-ldY" id="TVG-du-0fa"/>
+                        <outlet property="repeatPasswordLabel" destination="dsU-f4-LEm" id="4Yk-Kk-zFv"/>
+                        <outlet property="repeatPasswordLineView" destination="Hgh-JZ-xow" id="aYd-Hv-HvV"/>
+                        <outlet property="repeatPasswordTextField" destination="v6P-Bb-cyr" id="O4w-K8-j93"/>
+                        <outlet property="resendEmailButton" destination="V9V-ch-OgM" id="zwy-KZ-AoE"/>
+                        <outlet property="signUpButton" destination="XfU-BG-NR7" id="NWA-ui-R7s"/>
+                        <outlet property="signUpLabel" destination="i8T-qR-Cvc" id="sVd-QF-mM9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

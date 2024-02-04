@@ -14,24 +14,23 @@ class LoginViewController: UIViewController {
     //MARK: - IBOutlets
     
     //Labeles
-    @IBOutlet weak var emailLabelOutlet: UILabel!
-    @IBOutlet weak var passwordLabelOutlet: UILabel!
-    @IBOutlet weak var repeatPasswordLabelOutlet: UILabel!
-    @IBOutlet weak var signUpLabelOutlet: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var repeatPasswordLabel: UILabel!
+    @IBOutlet weak var signUpLabel: UILabel!
     
     //TextFields
-    @IBOutlet weak var emailTextFieldOutlet: UITextField!
-    @IBOutlet weak var passwordTextFieldOutlet: UITextField!
-    
-    @IBOutlet weak var repeatPasswordTextFieldOutlet: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var repeatPasswordTextField: UITextField!
     
     //Buttons
-    @IBOutlet weak var loginButtonOutlet: UIButton!
-    @IBOutlet weak var signUpButtonOutlet: UIButton!
-    @IBOutlet weak var resendEmailButtonOutlet: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var resendEmailButton: UIButton!
     
     //Views
-    @IBOutlet weak var repeatPasswordLineViewOutlet: UIView!
+    @IBOutlet weak var repeatPasswordLineView: UIView!
     
     //MARK: - Vars
     var isLogin = true
@@ -49,33 +48,32 @@ class LoginViewController: UIViewController {
     
     //MARK: - IBActions
     
-    @IBAction func loginButttonPressedAction(_ sender: Any) {
-        // login
-        if isLogin == true {
-            if isDataInputedFor(type: "Login") != true {
-                ProgressHUD.failed("All fields are required")
-            }
+    @IBAction func loginButttonPressed(_ sender: Any) {
+        
+        if isDataInputedFor(type: isLogin ? .login : .registration){
+            isLogin ? loginUser() : registerUser()
         }
-        // register
         else {
-            if isDataInputedFor(type: "Registration") != true {
-                ProgressHUD.failed("All fields are required")
-            }
+            ProgressHUD.failed("All fields are required")
+            
         }
     }
-    @IBAction func forgotPasswordButtonPressedAction(_ sender: Any) {
+    
+    @IBAction func forgotPasswordButtonPressed(_ sender: Any) {
         // reset password
-        if isDataInputedFor(type: "Password") != true {
+        if isDataInputedFor(type: .passwordReset) != true {
             ProgressHUD.failed("Mail is required")
         }
     }
-    @IBAction func resendEmailButtonPressedAction(_ sender: Any) {
+    
+    @IBAction func resendEmailButtonPressed(_ sender: Any) {
         //resend verification mail
-        if isDataInputedFor(type: "Password") != true {
+        if isDataInputedFor(type: .resendEmail) != true {
             ProgressHUD.failed("Mail is required")
         }
     }
-    @IBAction func signUpButtonPressedAction(_ sender: UIButton) {
+    
+    @IBAction func signUpButtonPressed(_ sender: UIButton) {
         
         if sender.titleLabel?.text == "Login" {
             updateUIFor(login: true)
@@ -89,11 +87,11 @@ class LoginViewController: UIViewController {
     
     //MARK: - Setup
     private func setupTextFieldDelegates() {
-        emailTextFieldOutlet.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        emailTextField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
         
-        passwordTextFieldOutlet.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
         
-        repeatPasswordTextFieldOutlet.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        repeatPasswordTextField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
     }
     
     @objc func textFieldDidChange(textField: UITextField) {
@@ -115,83 +113,73 @@ class LoginViewController: UIViewController {
     
     private func updateUIFor(login: Bool){
         
-        if login == true {
-            loginButtonOutlet.setImage(UIImage(named: "loginBtn"), for: .normal)
-            signUpButtonOutlet.setTitle("Sign Up", for: .normal)
-            signUpLabelOutlet.text = "Don't have an account?"
-            
-            UIView.animate(withDuration: 0.5) {
-                self.repeatPasswordLabelOutlet.isHidden = true
-                self.repeatPasswordTextFieldOutlet.isHidden = true
-                self.repeatPasswordLineViewOutlet.isHidden = true
-            }
-        }
-        else {
-            loginButtonOutlet.setImage(UIImage(named: "registerBtn"), for: .normal)
-            signUpButtonOutlet.setTitle("Login", for: .normal)
-            signUpLabelOutlet.text = "Have an account?"
-            UIView.animate(withDuration: 0.5) {
-                self.repeatPasswordLabelOutlet.isHidden = false
-                self.repeatPasswordTextFieldOutlet.isHidden = false
-                self.repeatPasswordLineViewOutlet.isHidden = false
-            }
+        let loginImage = UIImage(named: login ? "loginBtn" : "registerBtn")
+        loginButton.setImage(loginImage, for: .normal)
+        signUpButton.setTitle(login ? "Sign Up" : "Login", for: .normal)
+        signUpLabel.text = (login ? "Don't have an account?" : "Have an account?")
+        
+        UIView.animate(withDuration: 0.5) {
+            self.repeatPasswordLabel.isHidden = login
+            self.repeatPasswordTextField.isHidden = login
+            self.repeatPasswordLineView.isHidden = login
         }
         
     }
     
     private func updatePlaceholdersLabels(textField: UITextField){
-        
         switch textField {
-        case emailTextFieldOutlet:
-            if emailTextFieldOutlet.hasText {
-                emailLabelOutlet.text = "Email"
-            }
-            else{
-                emailLabelOutlet.text = ""
-            }
-        case passwordTextFieldOutlet:
-            if passwordTextFieldOutlet.hasText {
-                passwordLabelOutlet.text = "Password"
-            }
-            else{
-                passwordLabelOutlet.text = ""
-            }
-        case repeatPasswordTextFieldOutlet:
-            if repeatPasswordTextFieldOutlet.hasText {
-                repeatPasswordLabelOutlet.text = "Repeat Password"
-            }
-            else{
-                repeatPasswordLabelOutlet.text = ""
-            }
+        case emailTextField:
+            emailLabel.text = emailTextField.hasText ? "Email" : ""
+        case passwordTextField:
+            passwordLabel.text = passwordTextField.hasText ? "Password" : ""
+        case repeatPasswordTextField:
+            repeatPasswordLabel.text = repeatPasswordTextField.hasText ? "Repeat Password" : ""
         default: break
+        }
+    }
+    
+    //MARK: - Helpers
+    
+    private func isDataInputedFor(type: InputType) -> Bool {
+        switch type {
+        case .login:
+            return emailTextField.text != "" && passwordTextField.text != ""
+        case .registration:
+            return emailTextField.text != "" && passwordTextField.text != "" && repeatPasswordTextField.text != ""
+        case .passwordReset:
+            return emailTextField.text != ""
+        case .resendEmail:
+            return emailTextField.text != ""
         }
         
     }
     
-    //MARK: - Helpes
-    private func isDataInputedFor(type: String) -> Bool {
-        switch type {
-        case "Login":
-            if (emailTextFieldOutlet.text != "" && passwordTextFieldOutlet.text != ""){
-                return true
-            } else {
-                return false
+    private enum InputType {
+        case login
+        case registration
+        case passwordReset
+        case resendEmail
+    }
+    
+    private func loginUser(){
+        
+    }
+    
+    private func registerUser(){
+        if passwordTextField.text == repeatPasswordTextField.text {
+            FirebaseUserListener.shared.registerUserWith(email: emailTextField.text!, password: passwordTextField.text!) { error in
+                if error == nil {
+                    ProgressHUD.succeed("Verification email sent")
+                    self.resendEmailButton.isHidden = false
+                }
+                else {
+                    ProgressHUD.failed(error!.localizedDescription)
+                }
             }
             
-        case "Registration":
-            if (emailTextFieldOutlet.text != "" && passwordTextFieldOutlet.text != "" && repeatPasswordTextFieldOutlet.text != ""){
-                return true
-            } else {
-                return false
-            }
-        default:
-            if (emailTextFieldOutlet.text != ""){
-                return true
-            } else {
-                return false
-            }
+        } else {
+            ProgressHUD.failed("The passwords don't match")
         }
     }
     
 }
-
