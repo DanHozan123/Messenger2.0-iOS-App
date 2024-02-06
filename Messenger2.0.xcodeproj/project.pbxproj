@@ -97,8 +97,8 @@
 				0E3041B02B6FD8B900946B20 /* FirebaseHelpers */,
 				0E3041AB2B6FBC1D00946B20 /* Model */,
 				0E50CEEF2B6DBA3B00226B22 /* Main.storyboard */,
-				0E50CEF22B6DBA3C00226B22 /* Assets.xcassets */,
 				0E50CEF42B6DBA3C00226B22 /* LaunchScreen.storyboard */,
+				0E50CEF22B6DBA3C00226B22 /* Assets.xcassets */,
 				0E50CEF72B6DBA3C00226B22 /* Info.plist */,
 				0E2EC5C72B6E3C5D00A26EDE /* GoogleService-Info.plist */,
 			);
