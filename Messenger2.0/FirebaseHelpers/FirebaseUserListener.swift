@@ -21,7 +21,7 @@ class FirebaseUserListener {
         Auth.auth().signIn(withEmail: email, password: password) { (authDataResult, error) in
             
             if error == nil && authDataResult!.user.isEmailVerified {
-                //FirebaseUserListener.shared.downloadUserFromFirebase(userId: authDataResult!.user.uid, email: email)
+                FirebaseUserListener.shared.downloadUserFromFirebase(userId: authDataResult!.user.uid, email: email)
                 completion(error, true)
             } else {
                 print("email is not verified")
@@ -44,7 +44,7 @@ class FirebaseUserListener {
                 }
                 //create user and save it
                 if authDataResult?.user != nil {
-                    let user = User(id: authDataResult!.user.uid, username: email, mail: email, pushId: "", avatarLink: "", status: "Hey there I'm using Messegenr")
+                    let user = User(id: authDataResult!.user.uid, username: email, email: email, pushId: "", avatarLink: "", status: "Hey there I'm using Messegenr")
                     saveUserLocally(user: user)
                     self.saveUserToFireStore(user: user)
                 }
@@ -52,6 +52,26 @@ class FirebaseUserListener {
             
         }
     }
+    
+    //MARK: - Resend link methods
+        func resendVerificationEmail(email: String, completion: @escaping (_ error: Error?) -> Void) {
+            
+            Auth.auth().currentUser?.reload(completion: { (error) in
+                
+                Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                    completion(error)
+                })
+            })
+        }
+    
+    
+    func resetPasswordFor(email: String, completion: @escaping (_ error: Error?) -> Void) {
+        
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            completion(error)
+        }
+    }
+
     
     //MARK: - Save users
     func saveUserToFireStore(user: User){
