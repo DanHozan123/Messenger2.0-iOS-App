@@ -17,9 +17,7 @@ class FirebaseUserListener {
     //MARK: - Login
     
     func loginUserWithEmail(email: String, password: String, completion: @escaping (_ error: Error?, _ isEmailVerified: Bool) -> Void) {
-        
         Auth.auth().signIn(withEmail: email, password: password) { (authDataResult, error) in
-            
             if error == nil && authDataResult!.user.isEmailVerified {
                 FirebaseUserListener.shared.downloadUserFromFirebase(userId: authDataResult!.user.uid, email: email)
                 completion(error, true)
@@ -33,7 +31,6 @@ class FirebaseUserListener {
     //MARK: - Register
     func registerUserWith(email: String, password: String, complition: @escaping(_ error: Error?) -> Void){
         Auth.auth().createUser(withEmail: email, password: password) { ( authDataResult, error) in
-            print()
             complition(error)
             if error == nil {
                 //send verification mail
@@ -71,7 +68,22 @@ class FirebaseUserListener {
             completion(error)
         }
     }
-
+    
+    func logOutCurrentUser(completion: @escaping (_ error: Error?) -> Void) {
+        
+        do {
+            try Auth.auth().signOut()
+            
+            userDefaults.removeObject(forKey: kCURRENTUSER)
+            userDefaults.synchronize()
+            
+            completion(nil)
+        } catch let error as NSError {
+            completion(error)
+        }
+        
+    }
+    
     
     //MARK: - Save users
     func saveUserToFireStore(user: User){

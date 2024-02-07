@@ -167,7 +167,6 @@ class LoginViewController: UIViewController {
  
     private func loginUser(){
         FirebaseUserListener.shared.loginUserWithEmail(email: emailTextField.text!, password: passwordTextField.text!) { (error, isEmailVerified) in
-            
             if error == nil {
                 if isEmailVerified {
                     self.goToApp()

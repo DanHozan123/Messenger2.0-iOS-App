@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E08653D2B73A1FA003994C2 /* EditProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E08653C2B73A1FA003994C2 /* EditProfileTableViewController.swift */; };
 		0E2EC5C82B6E3C5D00A26EDE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E2EC5C72B6E3C5D00A26EDE /* GoogleService-Info.plist */; };
 		0E3041AA2B6FBC0200946B20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3041A92B6FBC0200946B20 /* User.swift */; };
 		0E3041AD2B6FBE4A00946B20 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3041AC2B6FBE4A00946B20 /* Constants.swift */; };
@@ -18,10 +19,12 @@
 		0E50CEF12B6DBA3B00226B22 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E50CEEF2B6DBA3B00226B22 /* Main.storyboard */; };
 		0E50CEF32B6DBA3C00226B22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E50CEF22B6DBA3C00226B22 /* Assets.xcassets */; };
 		0E50CEF62B6DBA3C00226B22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E50CEF42B6DBA3C00226B22 /* LaunchScreen.storyboard */; };
+		0EEDA3082B72AF9F0070C871 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDA3072B72AF9F0070C871 /* SettingsTableViewController.swift */; };
 		189B1DC2AA4F45BDD476039A /* Pods_Messenger2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8ABBCD12902020E7D2563B2 /* Pods_Messenger2_0.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E08653C2B73A1FA003994C2 /* EditProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileTableViewController.swift; sourceTree = "<group>"; };
 		0E2EC5C72B6E3C5D00A26EDE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0E3041A92B6FBC0200946B20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0E3041AC2B6FBE4A00946B20 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -35,6 +38,7 @@
 		0E50CEF22B6DBA3C00226B22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E50CEF52B6DBA3C00226B22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E50CEF72B6DBA3C00226B22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EEDA3072B72AF9F0070C871 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		4FC2A08E8E4D5A0EB719BEB6 /* Pods-Messenger2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger2.0.release.xcconfig"; path = "Target Support Files/Pods-Messenger2.0/Pods-Messenger2.0.release.xcconfig"; sourceTree = "<group>"; };
 		7C2DD413F445D2DC58BAB467 /* Pods-Messenger2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger2.0.debug.xcconfig"; path = "Target Support Files/Pods-Messenger2.0/Pods-Messenger2.0.debug.xcconfig"; sourceTree = "<group>"; };
 		F8ABBCD12902020E7D2563B2 /* Pods_Messenger2_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Messenger2_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				0E50CEED2B6DBA3B00226B22 /* LoginViewController.swift */,
+				0EEDA3072B72AF9F0070C871 /* SettingsTableViewController.swift */,
+				0E08653C2B73A1FA003994C2 /* EditProfileTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -258,6 +264,8 @@
 				0E3041AD2B6FBE4A00946B20 /* Constants.swift in Sources */,
 				0E3041AA2B6FBC0200946B20 /* User.swift in Sources */,
 				0E50CEEE2B6DBA3B00226B22 /* LoginViewController.swift in Sources */,
+				0EEDA3082B72AF9F0070C871 /* SettingsTableViewController.swift in Sources */,
+				0E08653D2B73A1FA003994C2 /* EditProfileTableViewController.swift in Sources */,
 				0E50CEEA2B6DBA3B00226B22 /* AppDelegate.swift in Sources */,
 				0E3041B22B6FD92900946B20 /* FirebaseUserListener.swift in Sources */,
 				0E50CEEC2B6DBA3B00226B22 /* SceneDelegate.swift in Sources */,
@@ -420,7 +428,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Hozan.Messenger2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -449,7 +457,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Hozan.Messenger2-0";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
