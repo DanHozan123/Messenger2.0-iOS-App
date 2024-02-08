@@ -26,6 +26,7 @@
 		0E76697E2B74F79F008B5D30 /* StatusTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E76697D2B74F79F008B5D30 /* StatusTableViewController.swift */; };
 		0E7669822B7518E3008B5D30 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7669812B7518E3008B5D30 /* UserTableViewCell.swift */; };
 		0E7669842B751BCE008B5D30 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7669832B751BCE008B5D30 /* UsersTableViewController.swift */; };
+		0E7669862B757D0E008B5D30 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7669852B757D0E008B5D30 /* ProfileTableViewController.swift */; };
 		0EEDA3082B72AF9F0070C871 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDA3072B72AF9F0070C871 /* SettingsTableViewController.swift */; };
 		189B1DC2AA4F45BDD476039A /* Pods_Messenger2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8ABBCD12902020E7D2563B2 /* Pods_Messenger2_0.framework */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		0E76697D2B74F79F008B5D30 /* StatusTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusTableViewController.swift; sourceTree = "<group>"; };
 		0E7669812B7518E3008B5D30 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		0E7669832B751BCE008B5D30 /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
+		0E7669852B757D0E008B5D30 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		0EEDA3072B72AF9F0070C871 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		4FC2A08E8E4D5A0EB719BEB6 /* Pods-Messenger2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger2.0.release.xcconfig"; path = "Target Support Files/Pods-Messenger2.0/Pods-Messenger2.0.release.xcconfig"; sourceTree = "<group>"; };
 		7C2DD413F445D2DC58BAB467 /* Pods-Messenger2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger2.0.debug.xcconfig"; path = "Target Support Files/Pods-Messenger2.0/Pods-Messenger2.0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				0E7669832B751BCE008B5D30 /* UsersTableViewController.swift */,
 				0E7669812B7518E3008B5D30 /* UserTableViewCell.swift */,
+				0E7669852B757D0E008B5D30 /* ProfileTableViewController.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				0E3041AD2B6FBE4A00946B20 /* Constants.swift in Sources */,
 				0E7669822B7518E3008B5D30 /* UserTableViewCell.swift in Sources */,
 				0E3041AA2B6FBC0200946B20 /* User.swift in Sources */,
+				0E7669862B757D0E008B5D30 /* ProfileTableViewController.swift in Sources */,
 				0E50CEEE2B6DBA3B00226B22 /* LoginViewController.swift in Sources */,
 				0EEDA3082B72AF9F0070C871 /* SettingsTableViewController.swift in Sources */,
 				0E0865432B740EB5003994C2 /* Extensions.swift in Sources */,

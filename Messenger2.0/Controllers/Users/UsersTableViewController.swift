@@ -61,7 +61,7 @@ class UsersTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 5
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -70,7 +70,7 @@ class UsersTableViewController: UITableViewController {
         
         let user = searchController.isActive ? filteredUsers[indexPath.row] : allUsers[indexPath.row]
         
-        //showUserProfile(user)
+        showUserProfile(user)
     }
     
     //MARK: - DownloadUsers
@@ -113,6 +113,16 @@ class UsersTableViewController: UITableViewController {
             self.refreshControl!.endRefreshing()
         }
     }
+    
+    //MARK: - Navigation
+    private func showUserProfile(_ user: User) {
+        
+        let profileView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ProfileView") as! ProfileTableViewController
+        
+        profileView.user = user
+        self.navigationController?.pushViewController(profileView, animated: true)
+    }
+    
     
 }
 
