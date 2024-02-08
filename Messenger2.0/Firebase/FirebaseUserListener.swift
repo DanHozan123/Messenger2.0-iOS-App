@@ -51,15 +51,15 @@ class FirebaseUserListener {
     }
     
     //MARK: - Resend link methods
-        func resendVerificationEmail(email: String, completion: @escaping (_ error: Error?) -> Void) {
+    func resendVerificationEmail(email: String, completion: @escaping (_ error: Error?) -> Void) {
+        
+        Auth.auth().currentUser?.reload(completion: { (error) in
             
-            Auth.auth().currentUser?.reload(completion: { (error) in
-                
-                Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
-                    completion(error)
-                })
+            Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                completion(error)
             })
-        }
+        })
+    }
     
     
     func resetPasswordFor(email: String, completion: @escaping (_ error: Error?) -> Void) {
@@ -99,7 +99,6 @@ class FirebaseUserListener {
     func downloadUserFromFirebase(userId: String, email: String? = nil) {
         
         FirebaseReference(collectionReferance: .User).document(userId).getDocument { (querySnapshot, error) in
-            
             guard let document = querySnapshot else {
                 print("no document for user")
                 return
@@ -122,6 +121,49 @@ class FirebaseUserListener {
         }
     }
     
+    func downloadAllUsersFromFirebase(completion: @escaping (_ allUsers: [User]) -> Void ) {
+        var users: [User] = []
+        FirebaseReference(collectionReferance: .User).limit(to: 500).getDocuments { (querySnapshot, error) in
+            guard let document = querySnapshot?.documents else {
+                print("no documents in all users")
+                return
+            }
+            let allUsers = document.compactMap { (queryDocumentSnapshot) -> User? in
+                return try? queryDocumentSnapshot.data(as: User.self)
+            }
+            for user in allUsers {
+                if User.currentId != user.id {
+                    users.append(user)
+                }
+            }
+            completion(users)
+        }
+    }
+    
+    func downloadUsersFromFirebase(withIds: [String], completion: @escaping (_ allUsers: [User]) -> Void) {
+        
+        var count = 0
+        var usersArray: [User] = []
+        
+        for userId in withIds {
+            FirebaseReference(collectionReferance: .User).document(userId).getDocument { (querySnapshot, error) in
+                
+                guard let document = querySnapshot else {
+                    print("no document for user")
+                    return
+                }
+                
+                let user = try? document.data(as: User.self)
+                usersArray.append(user!)
+                
+                count += 1
+                
+                if count == withIds.count {
+                    completion(usersArray)
+                }
+            }
+        }
+    }
     
     
 }
