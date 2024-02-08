@@ -15,7 +15,7 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
 pod 'FirebaseFirestoreSwift'
 
-pod 'Gallery'
+pod 'YPImagePicker'
 pod 'RealmSwift'
 
 pod 'ProgressHUD'

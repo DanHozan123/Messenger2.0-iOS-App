@@ -21,5 +21,11 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Messenger would like to use your camera</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Messenger would like to use your media library</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Messenger would like to use your photo library </string>
 </dict>
 </plist>

@@ -7,6 +7,8 @@
 
 import Foundation
 
-let userDefaults = UserDefaults.standard
-public let kCURRENTUSER = "currentUser"
 
+public let kFILEREFERENCE = "gs://messenger2-0-74245.appspot.com"
+public let kCURRENTUSER = "currentUser"
+public let kSTATUS = "status"
+public let kFIRSTRUN = "firstRUN"
