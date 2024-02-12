@@ -12,6 +12,8 @@
 		0E0865412B7406FA003994C2 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0865402B7406FA003994C2 /* GlobalFunctions.swift */; };
 		0E0865432B740EB5003994C2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0865422B740EB5003994C2 /* Extensions.swift */; };
 		0E0865452B7411D8003994C2 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E0865442B7411D8003994C2 /* Status.swift */; };
+		0E196AAE2B76C49500AD476E /* StartChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E196AAD2B76C49500AD476E /* StartChat.swift */; };
+		0E196AB02B76C8FF00AD476E /* FirebaseRecentListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E196AAF2B76C8FF00AD476E /* FirebaseRecentListener.swift */; };
 		0E2EC5C82B6E3C5D00A26EDE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E2EC5C72B6E3C5D00A26EDE /* GoogleService-Info.plist */; };
 		0E3041AA2B6FBC0200946B20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3041A92B6FBC0200946B20 /* User.swift */; };
 		0E3041AD2B6FBE4A00946B20 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3041AC2B6FBE4A00946B20 /* Constants.swift */; };
@@ -27,6 +29,8 @@
 		0E7669822B7518E3008B5D30 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7669812B7518E3008B5D30 /* UserTableViewCell.swift */; };
 		0E7669842B751BCE008B5D30 /* UsersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7669832B751BCE008B5D30 /* UsersTableViewController.swift */; };
 		0E7669862B757D0E008B5D30 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7669852B757D0E008B5D30 /* ProfileTableViewController.swift */; };
+		0E7819DF2B7626A200E692F8 /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7819DE2B7626A200E692F8 /* RecentChat.swift */; };
+		0E7819E12B7677DF00E692F8 /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7819E02B7677DF00E692F8 /* RecentTableViewCell.swift */; };
 		0EEDA3082B72AF9F0070C871 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDA3072B72AF9F0070C871 /* SettingsTableViewController.swift */; };
 		189B1DC2AA4F45BDD476039A /* Pods_Messenger2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8ABBCD12902020E7D2563B2 /* Pods_Messenger2_0.framework */; };
 /* End PBXBuildFile section */
@@ -37,6 +41,8 @@
 		0E0865402B7406FA003994C2 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		0E0865422B740EB5003994C2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0E0865442B7411D8003994C2 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		0E196AAD2B76C49500AD476E /* StartChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartChat.swift; sourceTree = "<group>"; };
+		0E196AAF2B76C8FF00AD476E /* FirebaseRecentListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRecentListener.swift; sourceTree = "<group>"; };
 		0E2EC5C72B6E3C5D00A26EDE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0E3041A92B6FBC0200946B20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0E3041AC2B6FBE4A00946B20 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -54,6 +60,8 @@
 		0E7669812B7518E3008B5D30 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		0E7669832B751BCE008B5D30 /* UsersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewController.swift; sourceTree = "<group>"; };
 		0E7669852B757D0E008B5D30 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		0E7819DE2B7626A200E692F8 /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
+		0E7819E02B7677DF00E692F8 /* RecentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTableViewCell.swift; sourceTree = "<group>"; };
 		0EEDA3072B72AF9F0070C871 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		4FC2A08E8E4D5A0EB719BEB6 /* Pods-Messenger2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger2.0.release.xcconfig"; path = "Target Support Files/Pods-Messenger2.0/Pods-Messenger2.0.release.xcconfig"; sourceTree = "<group>"; };
 		7C2DD413F445D2DC58BAB467 /* Pods-Messenger2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger2.0.debug.xcconfig"; path = "Target Support Files/Pods-Messenger2.0/Pods-Messenger2.0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -72,11 +80,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E196AAC2B76BE6900AD476E /* Recent Messeges */ = {
+			isa = PBXGroup;
+			children = (
+				0E7819E02B7677DF00E692F8 /* RecentTableViewCell.swift */,
+			);
+			path = "Recent Messeges";
+			sourceTree = "<group>";
+		};
 		0E3041AB2B6FBC1D00946B20 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				0E3041A92B6FBC0200946B20 /* User.swift */,
 				0E0865442B7411D8003994C2 /* Status.swift */,
+				0E7819DE2B7626A200E692F8 /* RecentChat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -87,6 +104,7 @@
 				0E3041AE2B6FD55500946B20 /* FirebaseCollectionReference.swift */,
 				0E3041B12B6FD92900946B20 /* FirebaseUserListener.swift */,
 				0E08653E2B73F61F003994C2 /* FileStorage.swift */,
+				0E196AAF2B76C8FF00AD476E /* FirebaseRecentListener.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -151,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				0E50CEED2B6DBA3B00226B22 /* LoginViewController.swift */,
+				0E196AAC2B76BE6900AD476E /* Recent Messeges */,
 				0E7669802B7518BC008B5D30 /* Users */,
 				0E76697F2B74F7A5008B5D30 /* Settings */,
 			);
@@ -163,6 +182,7 @@
 				0E3041AC2B6FBE4A00946B20 /* Constants.swift */,
 				0E0865402B7406FA003994C2 /* GlobalFunctions.swift */,
 				0E0865422B740EB5003994C2 /* Extensions.swift */,
+				0E196AAD2B76C49500AD476E /* StartChat.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -300,8 +320,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E7819DF2B7626A200E692F8 /* RecentChat.swift in Sources */,
 				0E0865412B7406FA003994C2 /* GlobalFunctions.swift in Sources */,
 				0E3041AF2B6FD55500946B20 /* FirebaseCollectionReference.swift in Sources */,
+				0E196AB02B76C8FF00AD476E /* FirebaseRecentListener.swift in Sources */,
 				0E7669842B751BCE008B5D30 /* UsersTableViewController.swift in Sources */,
 				0E08653F2B73F61F003994C2 /* FileStorage.swift in Sources */,
 				0E3041AD2B6FBE4A00946B20 /* Constants.swift in Sources */,
@@ -315,8 +337,10 @@
 				0E76697E2B74F79F008B5D30 /* StatusTableViewController.swift in Sources */,
 				0E0865452B7411D8003994C2 /* Status.swift in Sources */,
 				0E50CEEA2B6DBA3B00226B22 /* AppDelegate.swift in Sources */,
+				0E196AAE2B76C49500AD476E /* StartChat.swift in Sources */,
 				0E3041B22B6FD92900946B20 /* FirebaseUserListener.swift in Sources */,
 				0E50CEEC2B6DBA3B00226B22 /* SceneDelegate.swift in Sources */,
+				0E7819E12B7677DF00E692F8 /* RecentTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
