@@ -31,6 +31,13 @@ class ProfileTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        if indexPath.section == 1 {
+            let chatId = startChat(user1: User.currentUser!, user2: user!)
+            let privateChatView = ChatViewController(chatId: chatId, recipientId: user!.id, recipientName: user!.username)
+            privateChatView.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(privateChatView, animated: true)
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -20,6 +20,15 @@ func startChat(user1: User, user2: User) -> String {
     return chatRoomId
 }
 
+func restartChat(chatRoomId: String, memberIds: [String]) {
+    
+    FirebaseUserListener.shared.downloadUsersFromFirebase(withIds: memberIds) { (users) in
+        if users.count > 0 {
+            createRecentItems(chatRoomId: chatRoomId, users: users)
+        }
+    }
+}
+
 //MARK: - RecentChats
 
 func createRecentItems(chatRoomId: String, users: [User]) {
@@ -60,9 +69,9 @@ func removeMemberWhoHasRecent(snapshot: QuerySnapshot, memberIds: [String]) -> [
     for recentData in snapshot.documents {
         let currentRecent = recentData.data() as Dictionary
         if let currentUserId = currentRecent[kSENDERID] {
-        
+            
             if memberIdsToCreateRecent.contains(currentUserId as! String) {
-        
+                
                 memberIdsToCreateRecent.remove(at: memberIdsToCreateRecent.firstIndex(of: currentUserId as! String)!)
             }
         }

@@ -232,7 +232,7 @@
         <!--Users-->
         <scene sceneID="tNJ-1o-uLi">
             <objects>
-                <tableViewController id="xjY-Fp-AV4" customClass="UsersTableViewController" customModule="Messenger2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="usersView" id="xjY-Fp-AV4" customClass="UsersTableViewController" customModule="Messenger2_0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="d95-aI-nqb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -388,7 +388,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Lg-Fi-6TD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3630" y="340"/>
+            <point key="canvasLocation" x="5122" y="-1004"/>
         </scene>
         <!--Settings-->
         <scene sceneID="oKp-Fp-S7a">
@@ -780,7 +780,7 @@
         <!--Chats-->
         <scene sceneID="ie0-yC-e04">
             <objects>
-                <tableViewController id="lRD-oq-oCh" sceneMemberID="viewController">
+                <tableViewController id="lRD-oq-oCh" customClass="ChatsTableViewController" customModule="Messenger2_0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="ZA2-Ws-R8f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -870,7 +870,13 @@
                             <outlet property="delegate" destination="lRD-oq-oCh" id="cNw-lu-kFQ"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Chats" id="B3S-jH-LbG"/>
+                    <navigationItem key="navigationItem" title="Chats" id="B3S-jH-LbG">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="KxO-ex-aLe">
+                            <connections>
+                                <action selector="composeBarButtonPressed:" destination="lRD-oq-oCh" id="VhQ-iU-x7c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JPv-Zh-n9T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
