@@ -54,6 +54,9 @@ class ChatViewController: MessagesViewController {
     var maxMessageNumber = 0
     var minMessageNumber = 0
     
+    var typingCounter = 0
+    
+    
     //Listeners
     var notificationToken: NotificationToken?
     
@@ -77,6 +80,8 @@ class ChatViewController: MessagesViewController {
         
         navigationItem.largeTitleDisplayMode = .never
         
+        createTypingObserver()
+        
         configureMessageCollectionView()
         configureMessageInputBar()
         
@@ -85,6 +90,7 @@ class ChatViewController: MessagesViewController {
         
         loadChats()
         listenForNewChats()
+        listenForReadStatusChange()
     }
     
     //MARK: - Configurations
@@ -207,6 +213,16 @@ class ChatViewController: MessagesViewController {
     
     
     //MARK: - Insert Messages
+    private func listenForReadStatusChange() {
+        
+        FirebaseMessageListener.shared.listenForReadStatusChange(User.currentId, collectionId: chatId) { (updatedMessage) in
+            
+            if updatedMessage.status != kSENT {
+                self.updateMessage(updatedMessage)
+            }
+        }
+    }
+    
     
     private func insertMessages() {
         
@@ -224,9 +240,9 @@ class ChatViewController: MessagesViewController {
     
     private func insertMessage(_ localMessage: LocalMessage) {
         
-        //if localMessage.senderId != User.currentId {
-        //    markMessageAsRead(localMessage)
-        //}
+        if localMessage.senderId != User.currentId {
+            markMessageAsRead(localMessage)
+        }
         
         let incoming = IncomingMessage(_collectionView: self)
         self.mkMessages.append(incoming.createMessage(localMessage: localMessage)!)
@@ -255,12 +271,36 @@ class ChatViewController: MessagesViewController {
         displayingMessagesCount += 1
     }
     
+    //MARK: - UpdateReadMessagesStatus
+    func updateMessage(_ localMessage: LocalMessage) {
+        for index in 0 ..< mkMessages.count {
+            let tempMessage = mkMessages[index]
+            if localMessage.id == tempMessage.messageId {
+                mkMessages[index].status = localMessage.status
+                mkMessages[index].readDate = localMessage.readDate
+                
+                RealmManager.shared.saveToRealm(localMessage)
+                
+                if mkMessages[index].status == kREAD {
+                    self.messagesCollectionView.reloadData()
+                }
+            }
+        }
+    }
+    
+    private func markMessageAsRead(_ localMessage: LocalMessage) {
+        if localMessage.senderId != User.currentId && localMessage.status != kREAD {
+            FirebaseMessageListener.shared.updateMessageInFireStore(localMessage, memberIds: [User.currentId, recipientId])
+        }
+    }
+    
+    
     //MARK: - Actions
     
     
     @objc func backButtonPressed() {
-        //FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
-        //removeListeners()
+        FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
+        removeListeners()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -285,6 +325,12 @@ class ChatViewController: MessagesViewController {
     }
     
     //MARK: - Helpers
+    
+    private func removeListeners() {
+        FirebaseTypingListener.shared.removeTypingListener()
+        FirebaseMessageListener.shared.removeListeners()
+    }
+    
     private func lastMessageDate() -> Date {
         
         let lastMessageDate = allLocalMessages.last?.date ?? Date()
@@ -293,14 +339,37 @@ class ChatViewController: MessagesViewController {
     
     
     //MARK: - Update Typing indicator
+    func createTypingObserver() {
+        FirebaseTypingListener.shared.createTypingObserver(chatRoomId: chatId) { (isTyping) in
+            DispatchQueue.main.async {
+                self.updateTypingIndicator(isTyping)
+            }
+        }
+    }
+    
+    func typingIndicatorUpdate() {
+        
+        typingCounter += 1
+        FirebaseTypingListener.saveTypingCounter(typing: true, chatRoomId: chatId)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.typingCounterStop()
+        }
+    }
+    
+    func typingCounterStop() {
+        
+        typingCounter -= 1
+        
+        if typingCounter == 0 {
+            FirebaseTypingListener.saveTypingCounter(typing: false, chatRoomId: chatId)
+        }
+    }
     
     func updateTypingIndicator(_ show: Bool) {
         
         subTitleLabel.text = show ? "Typing..." : ""
     }
-    
-    
-    
     
     
     

@@ -7,7 +7,7 @@
 
 import Foundation
 import Firebase
-import FirebaseFirestoreSwift
+import FirebaseFirestore
 
 class FirebaseMessageListener {
     
@@ -46,6 +46,38 @@ class FirebaseMessageListener {
     }
     
     
+    func listenForReadStatusChange(_ documentId: String, collectionId: String, completion: @escaping (_ updatedMessage: LocalMessage) -> Void) {
+        
+        updatedChatListener = FirebaseReference(collectionReferance: .Messages).document(documentId).collection(collectionId).addSnapshotListener({ (querySnapshot, error) in
+            
+            
+            guard let snapshot = querySnapshot else { return }
+            
+            for change in snapshot.documentChanges {
+                
+                if change.type == .modified {
+                    let result = Result {
+                        try? change.document.data(as: LocalMessage.self)
+                    }
+                    
+                    switch result {
+                    case .success(let messageObject):
+                        
+                        if let message = messageObject {
+                            completion(message)
+                        } else {
+                            print("Document does not exist chat")
+                        }
+                        
+                        
+                    case .failure(let error):
+                        print("Error decoding local message: \(error)")
+                    }
+                }
+            }
+        })
+    }
+    
     func checkForOldChats(_ documentId: String, collectionId: String) {
         
         FirebaseReference(collectionReferance: .Messages).document(documentId).collection(collectionId).getDocuments { (querySnapshot, error) in
@@ -78,6 +110,23 @@ class FirebaseMessageListener {
         }
     }
     
+    //MARK: - UpdateMessageStatus
+    func updateMessageInFireStore(_ message: LocalMessage, memberIds: [String]) {
+        
+        let values = [kSTATUS : kREAD, kREADDATE : Date()] as [String : Any]
+        
+        for userId in memberIds {
+            FirebaseReference(collectionReferance: .Messages).document(userId).collection(message.chatRoomId).document(message.id).updateData(values)
+        }
+    }
+    
+    func removeListeners() {
+        self.newChatListener.remove()
+        
+        if self.updatedChatListener != nil {
+            self.updatedChatListener.remove()
+        }
+    }
     
     
 }
