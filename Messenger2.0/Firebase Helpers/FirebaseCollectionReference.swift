@@ -11,6 +11,7 @@ import FirebaseFirestore
 enum FCollectionReferance: String {
     case User
     case Recent
+    case Messages
 }
 
 func FirebaseReference(collectionReferance: FCollectionReferance) -> CollectionReference {
