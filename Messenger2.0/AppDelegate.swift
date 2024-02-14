@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         firstRunCheck()
         
+        LocationManager.shared.startUpdating()
+        
         return true
     }
 

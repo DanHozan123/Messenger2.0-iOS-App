@@ -13,7 +13,7 @@ import YPImagePicker
 
 class OutgoingMessage {
     
-    class func send(chatId: String, text: String?, photo: UIImage?, video: String?, audio: String?, audioDuration: Float = 0.0, location: String?, memberIds: [String]) {
+    class func send(chatId: String, text: String?, photo: UIImage?, video: YPMediaVideo?, audio: String?, audioDuration: Float = 0.0, location: String?, memberIds: [String]) {
         
         let currentUser = User.currentUser!
         
@@ -35,19 +35,16 @@ class OutgoingMessage {
         }
         
         if video != nil {
-            //sendVideoMessage(message: message, video: video!, memberIds: memberIds)
+            sendVideoMessage(message: message, video: video!, memberIds: memberIds)
         }
         
         if location != nil {
-            //sendLocationMessage(message: message, memberIds: memberIds)
+            sendLocationMessage(message: message, memberIds: memberIds)
         }
         
         if audio != nil {
             //sendAudioMessage(message: message, audioFileName: audio!, audioDuration: audioDuration, memberIds: memberIds)
         }
-        
-        //TODO: Send push notification
-        //TODO: Update recent
         
         FirebaseRecentListener.shared.updateRecents(chatRoomId: chatId, lastMessage: message.message)
     }
@@ -90,3 +87,54 @@ func sendPictureMessage(message: LocalMessage, photo: UIImage, memberIds: [Strin
         }
     }
 }
+
+func sendVideoMessage(message: LocalMessage, video: YPMediaVideo, memberIds: [String]) {
+    
+    message.message = "Video Message"
+    message.type = kVIDEO
+    
+    let fileName = Date().stringDate()
+    let thumbnailDirectory = "MediaMessages/Photo/" + "\(message.chatRoomId)/" + "_\(fileName)" + ".jpg"
+    let videoDirectory = "MediaMessages/Video/" + "\(message.chatRoomId)/" + "_\(fileName)" + ".mov"
+    
+    
+    let tempPath = video.url
+    
+    let thubnail = video.thumbnail
+    
+    FileStorage.saveFileLocally(fileData: thubnail.jpegData(compressionQuality: 0.7)! as NSData, fileName: fileName)
+    
+    FileStorage.uploadImage(thubnail, directory: thumbnailDirectory) { (imageLink) in
+        
+        if imageLink != nil {
+            
+            let videoData = NSData(contentsOfFile: tempPath.path)
+            
+            FileStorage.saveFileLocally(fileData: videoData!, fileName: fileName + ".mov")
+            
+            FileStorage.uploadVideo(videoData!, directory: videoDirectory) { (videoLink) in
+                
+                message.pictureUrl = imageLink ?? ""
+                message.videoUrl = videoLink ?? ""
+                
+                
+                OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+                
+            }
+        }
+    }
+    
+}
+
+func sendLocationMessage(message: LocalMessage, memberIds: [String]) {
+
+    let currentLocation = LocationManager.shared.currentLocation
+    message.message = "Location message"
+    message.type = kLOCATION
+    message.latitude = currentLocation?.latitude ?? 0.0
+    message.longitude = currentLocation?.longitude ?? 0.0
+    
+    OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+    
+}
+

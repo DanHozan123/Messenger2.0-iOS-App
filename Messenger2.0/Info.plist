@@ -27,5 +27,7 @@
 	<string>Messenger would like to use your media library</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Messenger would like to use your photo library </string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Messenger would like to use your location</string>
 </dict>
 </plist>

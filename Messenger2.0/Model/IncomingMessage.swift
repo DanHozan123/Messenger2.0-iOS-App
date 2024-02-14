@@ -27,7 +27,7 @@ class IncomingMessage {
         let mkMessage = MKMessage(message: localMessage)
         
         if localMessage.type == kPHOTO {
-             
+            
             let photoItem = PhotoMessage(path: localMessage.pictureUrl)
             mkMessage.photoItem = photoItem
             mkMessage.kind = MessageKind.photo(photoItem)
@@ -38,7 +38,19 @@ class IncomingMessage {
                 self.messageCollectionView.messagesCollectionView.reloadData()
             }
         }
-        
+        if localMessage.type == kVIDEO {
+            FileStorage.downloadImage(imageUrl: localMessage.pictureUrl) { (thumbNail) in
+                FileStorage.downloadVideo(videoLink: localMessage.videoUrl) { (readyToPlay, fileName) in
+                    let videoURL = URL(fileURLWithPath: fileInDocumentsDirectory(fileName: fileName))
+                    let videoItem = VideoMessage(url: videoURL)
+                    mkMessage.videoItem = videoItem
+                    mkMessage.kind = MessageKind.video(videoItem)
+                }
+                
+                mkMessage.videoItem?.image = thumbNail
+                self.messageCollectionView.messagesCollectionView.reloadData()
+            }
+        }
         
         return mkMessage
         

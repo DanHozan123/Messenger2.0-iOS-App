@@ -304,7 +304,7 @@ class ChatViewController: MessagesViewController {
     }
     
     
-    func messageSend(text: String?, photo: UIImage?, video: String?, audio: String?, location: String?, audioDuration: Float = 0.0) {
+    func messageSend(text: String?, photo: UIImage?, video: YPMediaVideo?, audio: String?, location: String?, audioDuration: Float = 0.0) {
         
         OutgoingMessage.send(chatId: chatId, text: text, photo: photo, video: video, audio: audio, audioDuration: audioDuration, location: location, memberIds: [User.currentId, recipientId])
     }
@@ -325,11 +325,11 @@ class ChatViewController: MessagesViewController {
         }
         
         let shareLocation = UIAlertAction(title: "Share Location", style: .default) { (alert) in
-            //if let _ = LocationManager.shared.currentLocation {
-            //self.messageSend(text: nil, photo: nil, video: nil, audio: nil, location: kLOCATION)
-            //} else {
-            //    print("no access to location")
-            //}
+            if let _ = LocationManager.shared.currentLocation {
+                self.messageSend(text: nil, photo: nil, video: nil, audio: nil, location: kLOCATION)
+            } else {
+                print("no access to location")
+            }
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -432,15 +432,14 @@ class ChatViewController: MessagesViewController {
             for item in items {
                 switch item {
                 case .photo(let photo):
-                    print("we seleted ", items.count)
                     if items.count > 0 {
                         self.messageSend(text: nil, photo: photo.image, video: nil, audio: nil, location: nil)
                     }
-                    //self.avatarImageView.image = photo.image
                     
                 case .video(let video):
-                    //if you need to access videos as well
-                    print("video")
+                    if items.count > 0 {
+                        self.messageSend(text: nil, photo: nil, video: video, audio: nil, location: nil)
+                    }
                 }
                 
             }
