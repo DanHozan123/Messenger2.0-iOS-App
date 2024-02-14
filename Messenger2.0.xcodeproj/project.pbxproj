@@ -19,6 +19,7 @@
 		0E3041AD2B6FBE4A00946B20 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3041AC2B6FBE4A00946B20 /* Constants.swift */; };
 		0E3041AF2B6FD55500946B20 /* FirebaseCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3041AE2B6FD55500946B20 /* FirebaseCollectionReference.swift */; };
 		0E3041B22B6FD92900946B20 /* FirebaseUserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3041B12B6FD92900946B20 /* FirebaseUserListener.swift */; };
+		0E4B003D2B7CD6D30090E886 /* PhotoMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4B003C2B7CD6D30090E886 /* PhotoMessage.swift */; };
 		0E4F2B532B7A80F000F0BFF3 /* ChatsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F2B522B7A80F000F0BFF3 /* ChatsTableViewController.swift */; };
 		0E4F2B552B7A944900F0BFF3 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F2B542B7A944900F0BFF3 /* ChatViewController.swift */; };
 		0E4F2B572B7AA5AE00F0BFF3 /* MessageDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4F2B562B7AA5AE00F0BFF3 /* MessageDataSource.swift */; };
@@ -63,6 +64,7 @@
 		0E3041AC2B6FBE4A00946B20 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0E3041AE2B6FD55500946B20 /* FirebaseCollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCollectionReference.swift; sourceTree = "<group>"; };
 		0E3041B12B6FD92900946B20 /* FirebaseUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUserListener.swift; sourceTree = "<group>"; };
+		0E4B003C2B7CD6D30090E886 /* PhotoMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoMessage.swift; sourceTree = "<group>"; };
 		0E4F2B522B7A80F000F0BFF3 /* ChatsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsTableViewController.swift; sourceTree = "<group>"; };
 		0E4F2B542B7A944900F0BFF3 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		0E4F2B562B7AA5AE00F0BFF3 /* MessageDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageDataSource.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				0E4F2B632B7AAA4700F0BFF3 /* MKMessage.swift */,
 				0E4F2B6A2B7AB6A800F0BFF3 /* OutgoingMessage.swift */,
 				0E745DE02B7B90A600EB1289 /* IncomingMessage.swift */,
+				0E4B003C2B7CD6D30090E886 /* PhotoMessage.swift */,
 				0E4F2B672B7AAC5F00F0BFF3 /* RealmMessages */,
 			);
 			path = Model;
@@ -407,6 +410,7 @@
 				0E0865452B7411D8003994C2 /* Status.swift in Sources */,
 				0E4F2B552B7A944900F0BFF3 /* ChatViewController.swift in Sources */,
 				0E4F2B602B7AA60C00F0BFF3 /* InputBarAccessoryViewDelegate.swift in Sources */,
+				0E4B003D2B7CD6D30090E886 /* PhotoMessage.swift in Sources */,
 				0E4F2B5C2B7AA5EA00F0BFF3 /* MessageDisplayDelegate.swift in Sources */,
 				0E50CEEA2B6DBA3B00226B22 /* AppDelegate.swift in Sources */,
 				0E8194E92B7B865400F9BDCA /* FirebaseMessageListener.swift in Sources */,

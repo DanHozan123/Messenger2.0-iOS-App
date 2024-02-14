@@ -30,6 +30,22 @@ class OutgoingMessage {
             sendTextMessage(message: message, text: text!, memberIds: memberIds)
         }
         
+        if photo != nil {
+            sendPictureMessage(message: message, photo: photo!, memberIds: memberIds)
+        }
+        
+        if video != nil {
+            //sendVideoMessage(message: message, video: video!, memberIds: memberIds)
+        }
+        
+        if location != nil {
+            //sendLocationMessage(message: message, memberIds: memberIds)
+        }
+        
+        if audio != nil {
+            //sendAudioMessage(message: message, audioFileName: audio!, audioDuration: audioDuration, memberIds: memberIds)
+        }
+        
         //TODO: Send push notification
         //TODO: Update recent
         
@@ -54,7 +70,23 @@ func sendTextMessage(message: LocalMessage, text: String, memberIds: [String]) {
     message.type = kTEXT
     
     OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+}
+
+func sendPictureMessage(message: LocalMessage, photo: UIImage, memberIds: [String]) {
+    message.message = "Picture Message"
+    message.type = kPHOTO
     
+    let fileName = Date().stringDate()
+    let fileDirectory = "MediaMessages/Photo/" + "\(message.chatRoomId)/" + "_\(fileName)" + ".jpg"
     
+    FileStorage.saveFileLocally(fileData: photo.jpegData(compressionQuality: 0.6)! as NSData, fileName: fileName)
     
+    FileStorage.uploadImage(photo, directory: fileDirectory) { (imageURL) in
+        
+        if imageURL != nil {
+            message.pictureUrl = imageURL!
+            OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+            
+        }
+    }
 }

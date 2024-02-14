@@ -49,10 +49,7 @@ class FirebaseMessageListener {
     func listenForReadStatusChange(_ documentId: String, collectionId: String, completion: @escaping (_ updatedMessage: LocalMessage) -> Void) {
         
         updatedChatListener = FirebaseReference(collectionReferance: .Messages).document(documentId).collection(collectionId).addSnapshotListener({ (querySnapshot, error) in
-            
-            
             guard let snapshot = querySnapshot else { return }
-            
             for change in snapshot.documentChanges {
                 
                 if change.type == .modified {

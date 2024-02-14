@@ -56,6 +56,7 @@ class ChatViewController: MessagesViewController {
     
     var typingCounter = 0
     
+    var gallery: YPImagePicker!
     
     //Listeners
     var notificationToken: NotificationToken?
@@ -119,7 +120,7 @@ class ChatViewController: MessagesViewController {
         attachButton.onTouchUpInside {
             item in
             
-            //self.actionAttachMessage()
+            self.actionAttachMessage()
         }
         
         micButton.image = UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
@@ -176,8 +177,6 @@ class ChatViewController: MessagesViewController {
         if allLocalMessages.isEmpty {
             checkForOldChats()
         }
-        
-        
         
         notificationToken = allLocalMessages.observe({ (changes: RealmCollectionChange) in
             
@@ -311,6 +310,40 @@ class ChatViewController: MessagesViewController {
     }
     
     
+    private func actionAttachMessage() {
+        
+        messageInputBar.inputTextView.resignFirstResponder()
+        
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let takePhoto = UIAlertAction(title: "Library Photo", style: .default) { (alert) in
+            self.showImageGallery(camera: true)
+        }
+        
+        let takeVideo = UIAlertAction(title: "Library Video", style: .default) { (alert) in
+            self.showImageGallery(camera: false)
+        }
+        
+        let shareLocation = UIAlertAction(title: "Share Location", style: .default) { (alert) in
+            //if let _ = LocationManager.shared.currentLocation {
+            //self.messageSend(text: nil, photo: nil, video: nil, audio: nil, location: kLOCATION)
+            //} else {
+            //    print("no access to location")
+            //}
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        
+        optionMenu.addAction(takePhoto)
+        optionMenu.addAction(takeVideo)
+        optionMenu.addAction(shareLocation)
+        optionMenu.addAction(cancelAction)
+        
+        self.present(optionMenu, animated: true, completion: nil)
+    }
+    
+    
     
     //MARK: - UIScrollViewDelegate
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -371,6 +404,55 @@ class ChatViewController: MessagesViewController {
         subTitleLabel.text = show ? "Typing..." : ""
     }
     
+    //MARK: - Gallery
+    private func showImageGallery(camera: Bool) {
+        
+        gallery = YPImagePicker()
+        
+        var config = YPImagePickerConfiguration()
+        config.showsPhotoFilters = false
+        config.library.maxNumberOfItems = 1
+        
+        if camera {
+            config.screens = [.library, .photo]
+            config.library.mediaType = .photo
+        } else {
+            config.screens = [.library, .video]
+            config.library.mediaType = .video
+            
+        }
+        
+        gallery = YPImagePicker(configuration: config)
+        
+        gallery.didFinishPicking { [unowned gallery] items, cancelled in
+            if cancelled {
+                print("Gallery was canceled")
+            }
+            
+            for item in items {
+                switch item {
+                case .photo(let photo):
+                    print("we seleted ", items.count)
+                    if items.count > 0 {
+                        self.messageSend(text: nil, photo: photo.image, video: nil, audio: nil, location: nil)
+                    }
+                    //self.avatarImageView.image = photo.image
+                    
+                case .video(let video):
+                    //if you need to access videos as well
+                    print("video")
+                }
+                
+            }
+            gallery!.dismiss(animated: true, completion: nil)
+        }
+        
+        present(gallery, animated: true, completion: nil)
+        
+        
+    }
     
     
 }
+
+
