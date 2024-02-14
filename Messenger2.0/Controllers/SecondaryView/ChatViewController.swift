@@ -40,6 +40,9 @@ class ChatViewController: MessagesViewController {
     private var recipientId = ""
     private var recipientName = ""
     
+    open lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
+    
+    
     let currentUser = MKSender(senderId: User.currentId, displayName: User.currentUser!.username)
     
     let refreshController = UIRefreshControl()
@@ -60,6 +63,10 @@ class ChatViewController: MessagesViewController {
     
     //Listeners
     var notificationToken: NotificationToken?
+    
+    var longPressGesture: UILongPressGestureRecognizer!
+    var audioFileName = ""
+    var audioDuration: Date!
     
     //MARK: - Inits
     init(chatId: String, recipientId: String, recipientName: String) {
@@ -84,6 +91,7 @@ class ChatViewController: MessagesViewController {
         createTypingObserver()
         
         configureMessageCollectionView()
+        configureGestureRecognizer()
         configureMessageInputBar()
         
         configureLeftBarButton()
@@ -92,6 +100,18 @@ class ChatViewController: MessagesViewController {
         loadChats()
         listenForNewChats()
         listenForReadStatusChange()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        FirebaseRecentListener.shared.resetRecentCounter(chatRoomId: chatId)
+        audioController.stopAnyOngoingPlaying()
     }
     
     //MARK: - Configurations
@@ -106,6 +126,12 @@ class ChatViewController: MessagesViewController {
         maintainPositionOnKeyboardFrameChanged = true
         
         messagesCollectionView.refreshControl = refreshController
+    }
+    
+    private func configureGestureRecognizer() {
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(recordAudio))
+        longPressGesture.minimumPressDuration = 0.5
+        longPressGesture.delaysTouchesBegan = true
     }
     
     private func configureMessageInputBar() {
@@ -126,7 +152,7 @@ class ChatViewController: MessagesViewController {
         micButton.image = UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))
         micButton.setSize(CGSize(width: 30, height: 30), animated: false)
         
-        //micButton.addGestureRecognizer(longPressGesture)
+        micButton.addGestureRecognizer(longPressGesture)
         
         messageInputBar.setStackViewItems([attachButton], forStack: .left, animated: false)
         
@@ -402,6 +428,37 @@ class ChatViewController: MessagesViewController {
     func updateTypingIndicator(_ show: Bool) {
         
         subTitleLabel.text = show ? "Typing..." : ""
+    }
+    
+    //MARK: - AudioMessages
+    @objc func recordAudio() {
+        
+        switch longPressGesture.state {
+        case .began:
+            
+            audioDuration = Date()
+            audioFileName = Date().stringDate()
+            AudioRecorder.shared.startRecording(fileName: audioFileName)
+        case .ended:
+            
+            AudioRecorder.shared.finishRecording()
+            
+            if fileExistsAtPath(path: audioFileName + ".m4a") {
+                
+                let audioD = audioDuration.interval(ofComponent: .second, from: Date())
+                
+                messageSend(text: nil, photo: nil, video: nil, audio: audioFileName, location: nil, audioDuration: audioD)
+                
+            } else {
+                print("no audio file")
+            }
+            
+            audioFileName = ""
+            
+        @unknown default:
+            print("unknown")
+        }
+        
     }
     
     //MARK: - Gallery
