@@ -97,21 +97,14 @@ func sendVideoMessage(message: LocalMessage, video: YPMediaVideo, memberIds: [St
     let thumbnailDirectory = "MediaMessages/Photo/" + "\(message.chatRoomId)/" + "_\(fileName)" + ".jpg"
     let videoDirectory = "MediaMessages/Video/" + "\(message.chatRoomId)/" + "_\(fileName)" + ".mov"
     
-    
     let tempPath = video.url
-    
     let thubnail = video.thumbnail
     
     FileStorage.saveFileLocally(fileData: thubnail.jpegData(compressionQuality: 0.7)! as NSData, fileName: fileName)
-    
     FileStorage.uploadImage(thubnail, directory: thumbnailDirectory) { (imageLink) in
-        
         if imageLink != nil {
-            
             let videoData = NSData(contentsOfFile: tempPath.path)
-            
             FileStorage.saveFileLocally(fileData: videoData!, fileName: fileName + ".mov")
-            
             FileStorage.uploadVideo(videoData!, directory: videoDirectory) { (videoLink) in
                 
                 message.pictureUrl = imageLink ?? ""
