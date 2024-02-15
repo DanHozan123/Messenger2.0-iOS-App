@@ -432,7 +432,6 @@ class ChatViewController: MessagesViewController {
     
     //MARK: - AudioMessages
     @objc func recordAudio() {
-        
         switch longPressGesture.state {
         case .began:
             
@@ -440,21 +439,23 @@ class ChatViewController: MessagesViewController {
             audioFileName = Date().stringDate()
             AudioRecorder.shared.startRecording(fileName: audioFileName)
         case .ended:
-            
             AudioRecorder.shared.finishRecording()
-            
             if fileExistsAtPath(path: audioFileName + ".m4a") {
-                
                 let audioD = audioDuration.interval(ofComponent: .second, from: Date())
                 
                 messageSend(text: nil, photo: nil, video: nil, audio: audioFileName, location: nil, audioDuration: audioD)
-                
             } else {
                 print("no audio file")
             }
-            
             audioFileName = ""
-            
+        case .possible:
+            print("possible")
+        case .changed:
+            print("changed")
+        case .cancelled:
+            print("cancelled")
+        case .failed:
+            print("failed")
         @unknown default:
             print("unknown")
         }
@@ -480,7 +481,6 @@ class ChatViewController: MessagesViewController {
         }
         
         gallery = YPImagePicker(configuration: config)
-        
         gallery.didFinishPicking { [unowned gallery] items, cancelled in
             if cancelled {
                 print("Gallery was canceled")
@@ -502,10 +502,7 @@ class ChatViewController: MessagesViewController {
             }
             gallery!.dismiss(animated: true, completion: nil)
         }
-        
         present(gallery, animated: true, completion: nil)
-        
-        
     }
     
     
