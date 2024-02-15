@@ -36,17 +36,8 @@ class EditProfileTableViewController: UITableViewController {
     
     
     // MARK: - Table view delegate
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // to do  show status view
         if indexPath.section == 1 && indexPath.row == 0 {
             performSegue(withIdentifier: "editProfileToStatusSegue", sender: self)
         }
