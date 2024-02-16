@@ -1,1 +1,1 @@
-A sophisticated messenger app. (Swift, Firebase Firestore Database)
+An iOS chat application like Whatsapp. (Swift, Firebase Firestore Database, Storyboards)
