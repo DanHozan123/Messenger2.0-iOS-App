@@ -11,12 +11,9 @@ protocol ChannelDetailTableViewControllerDelegate {
     func didClickFollow()
 }
 
-class ChannelTableViewController: UITableViewController {
-    
+class ChannelDetailTableViewController: UITableViewController {
     
     //MARK: - IBOutltes
-    
-    
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var membersLabel: UILabel!
@@ -26,17 +23,17 @@ class ChannelTableViewController: UITableViewController {
     var channel: Channel!
     var delegate: ChannelDetailTableViewControllerDelegate?
     
-    
-    // MARK: - View Lifecycle
+    //MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .never
+        tableView.tableFooterView = UIView()
         
         showChannelData()
         configureRightBarButton()
-        
     }
+    
     
     //MARK: - Configure
     private func showChannelData() {
@@ -54,7 +51,6 @@ class ChannelTableViewController: UITableViewController {
     private func setAvatar(avatarLink: String) {
         if avatarLink != "" {
             FileStorage.downloadImage(imageUrl: avatarLink) { (avatarImage) in
-                
                 DispatchQueue.main.async {
                     self.avatarImageView.image = avatarImage != nil ? avatarImage?.circleMasked : UIImage(named: "avatar")
                 }
@@ -72,5 +68,6 @@ class ChannelTableViewController: UITableViewController {
         delegate?.didClickFollow()
         self.navigationController?.popViewController(animated: true)
     }
+    
     
 }

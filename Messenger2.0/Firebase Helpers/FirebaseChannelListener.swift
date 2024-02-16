@@ -11,7 +11,6 @@ import Firebase
 class FirebaseChannelListener {
     
     static let shared = FirebaseChannelListener()
-    
     var channelListener: ListenerRegistration!
     
     private init() { }

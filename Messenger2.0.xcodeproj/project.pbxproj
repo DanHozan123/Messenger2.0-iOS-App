@@ -61,7 +61,8 @@
 		0E7819DF2B7626A200E692F8 /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7819DE2B7626A200E692F8 /* RecentChat.swift */; };
 		0E7819E12B7677DF00E692F8 /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7819E02B7677DF00E692F8 /* RecentTableViewCell.swift */; };
 		0E8194E92B7B865400F9BDCA /* FirebaseMessageListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8194E82B7B865400F9BDCA /* FirebaseMessageListener.swift */; };
-		0EEB91A62B7F8B15003BD807 /* ChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEB91A52B7F8B15003BD807 /* ChannelTableViewController.swift */; };
+		0EEB91A62B7F8B15003BD807 /* ChannelDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEB91A52B7F8B15003BD807 /* ChannelDetailTableViewController.swift */; };
+		0EEB91A82B7F9DB3003BD807 /* ChannelChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEB91A72B7F9DB3003BD807 /* ChannelChatViewController.swift */; };
 		0EEDA3082B72AF9F0070C871 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDA3072B72AF9F0070C871 /* SettingsTableViewController.swift */; };
 		189B1DC2AA4F45BDD476039A /* Pods_Messenger2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8ABBCD12902020E7D2563B2 /* Pods_Messenger2_0.framework */; };
 /* End PBXBuildFile section */
@@ -123,7 +124,8 @@
 		0E7819DE2B7626A200E692F8 /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
 		0E7819E02B7677DF00E692F8 /* RecentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTableViewCell.swift; sourceTree = "<group>"; };
 		0E8194E82B7B865400F9BDCA /* FirebaseMessageListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseMessageListener.swift; sourceTree = "<group>"; };
-		0EEB91A52B7F8B15003BD807 /* ChannelTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTableViewController.swift; sourceTree = "<group>"; };
+		0EEB91A52B7F8B15003BD807 /* ChannelDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDetailTableViewController.swift; sourceTree = "<group>"; };
+		0EEB91A72B7F9DB3003BD807 /* ChannelChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatViewController.swift; sourceTree = "<group>"; };
 		0EEDA3072B72AF9F0070C871 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		4FC2A08E8E4D5A0EB719BEB6 /* Pods-Messenger2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger2.0.release.xcconfig"; path = "Target Support Files/Pods-Messenger2.0/Pods-Messenger2.0.release.xcconfig"; sourceTree = "<group>"; };
 		7C2DD413F445D2DC58BAB467 /* Pods-Messenger2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger2.0.debug.xcconfig"; path = "Target Support Files/Pods-Messenger2.0/Pods-Messenger2.0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -293,9 +295,10 @@
 				0E7669852B757D0E008B5D30 /* ProfileTableViewController.swift */,
 				0E4B00472B7CFD8A0090E886 /* MapViewController.swift */,
 				0E4F2B542B7A944900F0BFF3 /* ChatViewController.swift */,
+				0EEB91A72B7F9DB3003BD807 /* ChannelChatViewController.swift */,
 				0E003F012B7E95650035F940 /* MyChannelsTableViewController.swift */,
 				0E003F032B7E95740035F940 /* AddChannelTableViewController.swift */,
-				0EEB91A52B7F8B15003BD807 /* ChannelTableViewController.swift */,
+				0EEB91A52B7F8B15003BD807 /* ChannelDetailTableViewController.swift */,
 			);
 			path = SecondaryView;
 			sourceTree = "<group>";
@@ -459,12 +462,13 @@
 				0E3041AD2B6FBE4A00946B20 /* Constants.swift in Sources */,
 				0E7669822B7518E3008B5D30 /* UserTableViewCell.swift in Sources */,
 				0E3041AA2B6FBC0200946B20 /* User.swift in Sources */,
-				0EEB91A62B7F8B15003BD807 /* ChannelTableViewController.swift in Sources */,
+				0EEB91A62B7F8B15003BD807 /* ChannelDetailTableViewController.swift in Sources */,
 				0E4F2B5A2B7AA5D800F0BFF3 /* MessageCellDelegate.swift in Sources */,
 				0E7669862B757D0E008B5D30 /* ProfileTableViewController.swift in Sources */,
 				0E50CEEE2B6DBA3B00226B22 /* LoginViewController.swift in Sources */,
 				0E003F002B7E8BE20035F940 /* ChannelTableViewCell.swift in Sources */,
 				0E4F2B6B2B7AB6A800F0BFF3 /* OutgoingMessage.swift in Sources */,
+				0EEB91A82B7F9DB3003BD807 /* ChannelChatViewController.swift in Sources */,
 				0EEDA3082B72AF9F0070C871 /* SettingsTableViewController.swift in Sources */,
 				0E745DE32B7BB95E00EB1289 /* FirebaseTypingListener.swift in Sources */,
 				0E003F042B7E95740035F940 /* AddChannelTableViewController.swift in Sources */,

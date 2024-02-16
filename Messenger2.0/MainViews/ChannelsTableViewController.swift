@@ -9,21 +9,25 @@ import UIKit
 
 class ChannelsTableViewController: UITableViewController {
     
-    // MARK: - IBOutlets
+    //MARK: - IBOutlets
     @IBOutlet weak var channelSegmentOutlet: UISegmentedControl!
     
     //MARK: - Vars
     var allChannels: [Channel] = []
     var subscribedChannels: [Channel] = []
     
-    // MARK: - View LifeCycle
+    
+    //MARK: - View LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationItem.largeTitleDisplayMode = .always
-        self.title = "Channels"
+        self.title = "Channel"
         
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
+        
+        tableView.tableFooterView = UIView()
         
         downloadAllChannels()
         downloadSubscribedChannels()
@@ -31,19 +35,17 @@ class ChannelsTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return channelSegmentOutlet.selectedSegmentIndex == 0 ? subscribedChannels.count : allChannels.count
         
+        return channelSegmentOutlet.selectedSegmentIndex == 0 ? subscribedChannels.count : allChannels.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ChannelTableViewCell
         let channel = channelSegmentOutlet.selectedSegmentIndex == 0 ? subscribedChannels[indexPath.row] : allChannels[indexPath.row]
         
         cell.configure(channel: channel)
         
         return cell
-        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -55,13 +57,14 @@ class ChannelsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if channelSegmentOutlet.selectedSegmentIndex == 1 {
-           // showChannelView(channel: allChannels[indexPath.row])
+            showChannelView(channel: allChannels[indexPath.row])
         } else {
-           // showChat(channel: subscribedChannels[indexPath.row])
+            showChat(channel: subscribedChannels[indexPath.row])
         }
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        
         if channelSegmentOutlet.selectedSegmentIndex == 1 {
             return false
         } else {
@@ -70,9 +73,12 @@ class ChannelsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
         if editingStyle == .delete {
+            
             var channelToUnfollow = subscribedChannels[indexPath.row]
             subscribedChannels.remove(at: indexPath.row)
+            
             
             if let index = channelToUnfollow.memberIds.firstIndex(of: User.currentId) {
                 channelToUnfollow.memberIds.remove(at: index)
@@ -83,14 +89,18 @@ class ChannelsTableViewController: UITableViewController {
         }
     }
     
+    
     //MARK: - IBActions
     @IBAction func channelSegmentValueChanged(_ sender: Any) {
+        
         tableView.reloadData()
     }
     
     //MARK: - Download channels
     private func downloadAllChannels() {
+        
         FirebaseChannelListener.shared.downloadAllChannels { (allChannels) in
+            
             self.allChannels = allChannels
             
             if self.channelSegmentOutlet.selectedSegmentIndex == 1 {
@@ -103,6 +113,7 @@ class ChannelsTableViewController: UITableViewController {
     
     private func downloadSubscribedChannels() {
         FirebaseChannelListener.shared.downloadSubscribedChannels { (subscribedChannels) in
+            
             self.subscribedChannels = subscribedChannels
             if self.channelSegmentOutlet.selectedSegmentIndex == 0 {
                 DispatchQueue.main.async {
@@ -121,7 +132,30 @@ class ChannelsTableViewController: UITableViewController {
         }
     }
     
+    //MARK: - Navigation
+    private func showChannelView(channel: Channel) {
+        
+        let channelVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "channelView") as! ChannelDetailTableViewController
+        
+        channelVC.channel = channel
+        channelVC.delegate = self
+        self.navigationController?.pushViewController(channelVC, animated: true)
+    }
     
+    private func showChat(channel: Channel) {
+        
+        let channelChatVC = ChannelChatViewController(channel: channel)
+        
+        channelChatVC.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(channelChatVC, animated: true)
+    }
+}
+
+
+extension ChannelsTableViewController : ChannelDetailTableViewControllerDelegate {
     
+    func didClickFollow() {
+        self.downloadAllChannels()
+    }
     
 }

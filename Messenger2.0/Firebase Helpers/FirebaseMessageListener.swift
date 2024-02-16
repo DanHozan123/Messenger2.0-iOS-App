@@ -107,6 +107,15 @@ class FirebaseMessageListener {
         }
     }
     
+    func addChannelMessage(_ message: LocalMessage, channel: Channel) {
+        do {
+            let _ = try FirebaseReference(collectionReferance: .Messages).document(channel.id).collection(channel.id).document(message.id).setData(from: message)
+        }
+        catch {
+            print("error saving message ", error.localizedDescription)
+        }
+    }
+    
     //MARK: - UpdateMessageStatus
     func updateMessageInFireStore(_ message: LocalMessage, memberIds: [String]) {
         

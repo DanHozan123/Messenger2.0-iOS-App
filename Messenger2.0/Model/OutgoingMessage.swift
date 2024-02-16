@@ -49,6 +49,47 @@ class OutgoingMessage {
         FirebaseRecentListener.shared.updateRecents(chatRoomId: chatId, lastMessage: message.message)
     }
     
+    class func sendChannel(channel: Channel, text: String?, photo: UIImage?, video: YPMediaVideo?, audio: String?, audioDuration: Float = 0.0, location: String?) {
+        
+        let currentUser = User.currentUser!
+        var channel = channel
+        
+        let message = LocalMessage()
+        message.id = UUID().uuidString
+        message.chatRoomId = channel.id
+        message.senderId = currentUser.id
+        message.senderName = currentUser.username
+        
+        message.senderinitials = String(currentUser.username.first!)
+        message.date = Date()
+        message.status = kSENT
+        
+        if text != nil {
+            sendTextMessage(message: message, text: text!, memberIds: channel.memberIds, channel: channel)
+        }
+        
+        if photo != nil {
+            sendPictureMessage(message: message, photo: photo!, memberIds: channel.memberIds, channel: channel)
+        }
+        
+        if video != nil {
+            sendVideoMessage(message: message, video: video!, memberIds: channel.memberIds, channel: channel)
+        }
+        
+        if location != nil {
+            sendLocationMessage(message: message, memberIds: channel.memberIds, channel: channel)
+        }
+        
+        if audio != nil {
+            sendAudioMessage(message: message, audioFileName: audio!, audioDuration: audioDuration, memberIds: channel.memberIds, channel: channel)
+        }
+        
+        
+        channel.lastMessageDate = Date()
+        FirebaseChannelListener.shared.saveCannel(channel)
+    }
+    
+    
     class func sendMessage(message: LocalMessage, memberIds: [String]) {
         
         RealmManager.shared.saveToRealm(message)
@@ -57,19 +98,28 @@ class OutgoingMessage {
             FirebaseMessageListener.shared.addMessage(message, memberId: memberId)
         }
     }
+    class func sendChannelMessage(message: LocalMessage, channel: Channel) {
+        
+        RealmManager.shared.saveToRealm(message)
+        FirebaseMessageListener.shared.addChannelMessage(message, channel: channel)
+    }
     
 }
 
 
-func sendTextMessage(message: LocalMessage, text: String, memberIds: [String]) {
+func sendTextMessage(message: LocalMessage, text: String, memberIds: [String], channel: Channel? = nil) {
     
     message.message = text
     message.type = kTEXT
     
-    OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+    if channel != nil {
+        OutgoingMessage.sendChannelMessage(message: message, channel: channel!)
+    } else {
+        OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+    }
 }
 
-func sendPictureMessage(message: LocalMessage, photo: UIImage, memberIds: [String]) {
+func sendPictureMessage(message: LocalMessage, photo: UIImage, memberIds: [String], channel: Channel? = nil) {
     message.message = "Picture Message"
     message.type = kPHOTO
     
@@ -82,13 +132,17 @@ func sendPictureMessage(message: LocalMessage, photo: UIImage, memberIds: [Strin
         
         if imageURL != nil {
             message.pictureUrl = imageURL!
-            OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
             
+            if channel != nil {
+                OutgoingMessage.sendChannelMessage(message: message, channel: channel!)
+            } else {
+                OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+            }
         }
     }
 }
 
-func sendVideoMessage(message: LocalMessage, video: YPMediaVideo, memberIds: [String]) {
+func sendVideoMessage(message: LocalMessage, video: YPMediaVideo, memberIds: [String], channel: Channel? = nil) {
     
     message.message = "Video Message"
     message.type = kVIDEO
@@ -111,15 +165,18 @@ func sendVideoMessage(message: LocalMessage, video: YPMediaVideo, memberIds: [St
                 message.videoUrl = videoLink ?? ""
                 
                 
-                OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
-                
+                if channel != nil {
+                    OutgoingMessage.sendChannelMessage(message: message, channel: channel!)
+                } else {
+                    OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+                }
             }
         }
     }
     
 }
 
-func sendLocationMessage(message: LocalMessage, memberIds: [String]) {
+func sendLocationMessage(message: LocalMessage, memberIds: [String], channel: Channel? = nil) {
     
     let currentLocation = LocationManager.shared.currentLocation
     message.message = "Location message"
@@ -127,11 +184,14 @@ func sendLocationMessage(message: LocalMessage, memberIds: [String]) {
     message.latitude = currentLocation?.latitude ?? 0.0
     message.longitude = currentLocation?.longitude ?? 0.0
     
-    OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
-    
+    if channel != nil {
+        OutgoingMessage.sendChannelMessage(message: message, channel: channel!)
+    } else {
+        OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+    }
 }
 
-func sendAudioMessage(message: LocalMessage, audioFileName: String, audioDuration: Float, memberIds: [String]) {
+func sendAudioMessage(message: LocalMessage, audioFileName: String, audioDuration: Float, memberIds: [String], channel: Channel? = nil) {
     
     message.message = "Audio message"
     message.type = kAUDIO
@@ -145,9 +205,12 @@ func sendAudioMessage(message: LocalMessage, audioFileName: String, audioDuratio
             message.audioUrl = audioUrl ?? ""
             message.audioDuration = Double(audioDuration)
             
-
-            OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
             
+            if channel != nil {
+                OutgoingMessage.sendChannelMessage(message: message, channel: channel!)
+            } else {
+                OutgoingMessage.sendMessage(message: message, memberIds: memberIds)
+            }
         }
     }
 }

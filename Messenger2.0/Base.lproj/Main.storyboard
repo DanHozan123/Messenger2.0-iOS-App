@@ -1192,10 +1192,10 @@
             </objects>
             <point key="canvasLocation" x="4294.8837209302328" y="-335.40772532188845"/>
         </scene>
-        <!--Channel Table View Controller-->
+        <!--Channel Detail Table View Controller-->
         <scene sceneID="ECb-V5-m1c">
             <objects>
-                <tableViewController storyboardIdentifier="channelView" id="8Ch-8Z-2IB" customClass="ChannelTableViewController" customModule="Messenger2_0" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="channelView" id="8Ch-8Z-2IB" customClass="ChannelDetailTableViewController" customModule="Messenger2_0" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="56C-be-MK5">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
