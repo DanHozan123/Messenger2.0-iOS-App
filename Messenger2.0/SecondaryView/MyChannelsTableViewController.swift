@@ -72,7 +72,7 @@ class MyChannelsTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "myChannelToAddSeg" {
-            let editChannelView = segue.dest  ination as! AddChannelTableViewController
+            let editChannelView = segue.destination as! AddChannelTableViewController
             editChannelView.channelToEdit = sender as? Channel
         }
     }

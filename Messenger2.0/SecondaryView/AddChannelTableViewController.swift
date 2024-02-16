@@ -66,7 +66,6 @@ class AddChannelTableViewController: UITableViewController {
         avatarImageView.addGestureRecognizer(tapGesture)
     }
     private func configureLeftBarButton() {
-        
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonPressed))
     }
     
@@ -90,11 +89,8 @@ class AddChannelTableViewController: UITableViewController {
     
     //MARK: - Save Channel
     private func saveChannel() {
-        
         let channel = Channel(id: channelId, name: nameTextField.text!, adminId: User.currentId, memberIds: [User.currentId], avatarLink: avatarLink, aboutChannel: aboutTextView.text)
-        
         FirebaseChannelListener.shared.saveCannel(channel)
-        
         self.navigationController?.popViewController(animated: true)
     }
     

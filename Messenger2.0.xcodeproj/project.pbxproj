@@ -61,6 +61,7 @@
 		0E7819DF2B7626A200E692F8 /* RecentChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7819DE2B7626A200E692F8 /* RecentChat.swift */; };
 		0E7819E12B7677DF00E692F8 /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7819E02B7677DF00E692F8 /* RecentTableViewCell.swift */; };
 		0E8194E92B7B865400F9BDCA /* FirebaseMessageListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8194E82B7B865400F9BDCA /* FirebaseMessageListener.swift */; };
+		0EEB91A62B7F8B15003BD807 /* ChannelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEB91A52B7F8B15003BD807 /* ChannelTableViewController.swift */; };
 		0EEDA3082B72AF9F0070C871 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EEDA3072B72AF9F0070C871 /* SettingsTableViewController.swift */; };
 		189B1DC2AA4F45BDD476039A /* Pods_Messenger2_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8ABBCD12902020E7D2563B2 /* Pods_Messenger2_0.framework */; };
 /* End PBXBuildFile section */
@@ -122,6 +123,7 @@
 		0E7819DE2B7626A200E692F8 /* RecentChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChat.swift; sourceTree = "<group>"; };
 		0E7819E02B7677DF00E692F8 /* RecentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTableViewCell.swift; sourceTree = "<group>"; };
 		0E8194E82B7B865400F9BDCA /* FirebaseMessageListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseMessageListener.swift; sourceTree = "<group>"; };
+		0EEB91A52B7F8B15003BD807 /* ChannelTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTableViewController.swift; sourceTree = "<group>"; };
 		0EEDA3072B72AF9F0070C871 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		4FC2A08E8E4D5A0EB719BEB6 /* Pods-Messenger2.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger2.0.release.xcconfig"; path = "Target Support Files/Pods-Messenger2.0/Pods-Messenger2.0.release.xcconfig"; sourceTree = "<group>"; };
 		7C2DD413F445D2DC58BAB467 /* Pods-Messenger2.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Messenger2.0.debug.xcconfig"; path = "Target Support Files/Pods-Messenger2.0/Pods-Messenger2.0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -259,7 +261,12 @@
 			children = (
 				0E50CEE92B6DBA3B00226B22 /* AppDelegate.swift */,
 				0E50CEEB2B6DBA3B00226B22 /* SceneDelegate.swift */,
-				0EEDA3032B728E1D0070C871 /* Controllers */,
+				0E196AAC2B76BE6900AD476E /* MainViews */,
+				0E7669802B7518BC008B5D30 /* SecondaryView */,
+				0E4F2B582B7AA5B700F0BFF3 /* ChatViewExtensions */,
+				0E4B00452B7CFC770090E886 /* SettingsViews */,
+				0E76697F2B74F7A5008B5D30 /* LoginViews */,
+				0E4B00462B7CFCEB0090E886 /* CustomCells */,
 				0E3041AB2B6FBC1D00946B20 /* Model */,
 				0E3041B02B6FD8B900946B20 /* Firebase Helpers */,
 				0EEDA3042B7294FF0070C871 /* Helpers */,
@@ -288,21 +295,9 @@
 				0E4F2B542B7A944900F0BFF3 /* ChatViewController.swift */,
 				0E003F012B7E95650035F940 /* MyChannelsTableViewController.swift */,
 				0E003F032B7E95740035F940 /* AddChannelTableViewController.swift */,
-				0E4F2B582B7AA5B700F0BFF3 /* ChatViewExtensions */,
+				0EEB91A52B7F8B15003BD807 /* ChannelTableViewController.swift */,
 			);
 			path = SecondaryView;
-			sourceTree = "<group>";
-		};
-		0EEDA3032B728E1D0070C871 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				0E196AAC2B76BE6900AD476E /* MainViews */,
-				0E7669802B7518BC008B5D30 /* SecondaryView */,
-				0E4B00452B7CFC770090E886 /* SettingsViews */,
-				0E76697F2B74F7A5008B5D30 /* LoginViews */,
-				0E4B00462B7CFCEB0090E886 /* CustomCells */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		0EEDA3042B7294FF0070C871 /* Helpers */ = {
@@ -464,6 +459,7 @@
 				0E3041AD2B6FBE4A00946B20 /* Constants.swift in Sources */,
 				0E7669822B7518E3008B5D30 /* UserTableViewCell.swift in Sources */,
 				0E3041AA2B6FBC0200946B20 /* User.swift in Sources */,
+				0EEB91A62B7F8B15003BD807 /* ChannelTableViewController.swift in Sources */,
 				0E4F2B5A2B7AA5D800F0BFF3 /* MessageCellDelegate.swift in Sources */,
 				0E7669862B757D0E008B5D30 /* ProfileTableViewController.swift in Sources */,
 				0E50CEEE2B6DBA3B00226B22 /* LoginViewController.swift in Sources */,
