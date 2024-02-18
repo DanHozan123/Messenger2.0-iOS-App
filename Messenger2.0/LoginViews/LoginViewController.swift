@@ -24,6 +24,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var repeatPasswordTextField: UITextField!
     
+    @IBOutlet weak var titleLoginRegisterLabel: UILabel!
     //Buttons
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signUpButton: UIButton!
@@ -121,6 +122,11 @@ class LoginViewController: UIViewController {
         loginButton.setImage(loginImage, for: .normal)
         signUpButton.setTitle(login ? "Sign Up" : "Login", for: .normal)
         signUpLabel.text = (login ? "Don't have an account?" : "Have an account?")
+        if login {
+            titleLoginRegisterLabel.text = "Login"
+        }else {
+            titleLoginRegisterLabel.text = "Register"
+        }
         
         UIView.animate(withDuration: 0.5) {
             self.repeatPasswordLabel.isHidden = login

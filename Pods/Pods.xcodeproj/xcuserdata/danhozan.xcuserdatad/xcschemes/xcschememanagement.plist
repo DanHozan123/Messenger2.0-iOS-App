@@ -116,6 +116,11 @@
 			<key>orderHint</key>
 			<integer>22</integer>
 		</dict>
+		<key>Gallery.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>37</integer>
+		</dict>
 		<key>GoogleAppMeasurement.xcscheme</key>
 		<dict>
 			<key>isShown</key>

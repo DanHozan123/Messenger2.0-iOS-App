@@ -187,6 +187,7 @@
                         <outlet property="resendEmailButton" destination="V9V-ch-OgM" id="zwy-KZ-AoE"/>
                         <outlet property="signUpButton" destination="XfU-BG-NR7" id="NWA-ui-R7s"/>
                         <outlet property="signUpLabel" destination="i8T-qR-Cvc" id="sVd-QF-mM9"/>
+                        <outlet property="titleLoginRegisterLabel" destination="Zkd-9b-QuJ" id="kO1-sj-hh7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
