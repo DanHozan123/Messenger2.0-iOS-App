@@ -22,7 +22,7 @@ class ChannelsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .always
-        self.title = "Channel"
+        self.title = "Channels"
         
         self.refreshControl = UIRefreshControl()
         self.tableView.refreshControl = self.refreshControl
